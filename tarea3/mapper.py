@@ -13,6 +13,6 @@ for line in sys.stdin:
 
     if len (data)==6 :
        date, time, store, item, cost, payment = data
-       print(payment+"\t"+max(cost))
+       print(payment+"\t"+cost)
     else:
          pass

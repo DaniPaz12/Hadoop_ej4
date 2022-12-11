@@ -2,8 +2,8 @@
 
 import sys
 
-salesTotal = 0
-oldKey = None
+
+maximo = {}
 
 # Loop around the data
 # It will be in the format key\tval
@@ -20,16 +20,12 @@ for line in sys.stdin:
 
     thisKey, thisSale = data_mapped
 
-    # Escribe un par key:value ante un cambio na key
-    # Reinicia o total
-    if oldKey and oldKey != thisKey:
-        print(oldKey+"\t"+str(salesTotal))
-        oldKey = thisKey;
-        salesTotal = 0
+    if thisKey not in maximo.keys():
+	maximo[thisKey]=thisSale
+    
+    elif float(maximo[thisKey])<float(thisSale):
+	maximo[thisKey]=thisSale
 
-    oldKey = thisKey
-    salesTotal += float(thisSale)
+for key, value in maximo.items():
+    print(key+"\t"+value)
 
-# Escribe o ultimo par, unha vez rematado o bucle
-if oldKey != None:
-    print(oldKey+"\t"+str(salesTotal))
